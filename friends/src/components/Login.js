@@ -20,7 +20,7 @@ function Login() {
         .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data.payload));
             setIsLoading(false);
-            history.push('/protected');
+            history.push("/friends");
         })
         .catch(err => console.log({err: err.message}));
     }
@@ -54,3 +54,5 @@ function Login() {
         </form>
     )
 }
+
+export default Login;
