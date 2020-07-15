@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import {axiosWithAuth} from "../utils/axiosWithAuth";
 
 const Friends = () => {
     const [friendsList, setFriendsList] = useState([]);
@@ -12,7 +12,7 @@ const Friends = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .get("/api/friends")
+            .get("/friends")
             .then((res) => {
                 setFriendsList(res.data);
             })
@@ -23,9 +23,10 @@ const Friends = () => {
         setNewFriend({[e.target.name]: e.target.value});
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
         axiosWithAuth()
-            .post("api/friends", newFriend)
+            .post("/friends", newFriend)
             .then((res) => {
                 setNewFriend([...friendsList, res.data]);
             })
